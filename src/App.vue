@@ -1,18 +1,44 @@
 <script setup lang="ts">
-import bookList from './components/bookitem.vue'
-import { ref }from 'vue'
-const list = ref([
-  {name:'sing',pages:100,author:'joe',id:1},
-  {name:'song',pages:200,author:'bridge',id:2}
-]
+import {reactive, ref} from 'vue'
+import axios from 'axios'
+//数据
+let sum = ref(0)
+let dogPhotoUrl = axios.get('https://dog.ceo/api/breed/pembroke/images/random')
+let dogPhotoList = reactive(
+  ['https://images.dog.ceo/breeds/pembroke/n02113023_4972.jpg']
 )
+//方法
+function Add(){
+  sum.value += 1
+}
+async function getPhotoUrl(){
+  try{
+  let result = await axios.get('https://dog.ceo/api/breed/pembroke/images/random');
+  return result.data}
+  catch(error){
+    alert(error)
+  }
+}
+async function addDogPhoto(){
+  let newPhotoJson = await getPhotoUrl();
+  let newPhotoUrl = newPhotoJson.message
+  dogPhotoList.push(newPhotoUrl)
+}
 </script>
 
 <template>
-<bookList :booklist="list" />
+<h1>现在的数字大小:{{ sum }}</h1>
+<br>
+<button @click="Add">点我加一</button>
+<hr>
+<img v-for="(dog,index) in dogPhotoList" :src="dog" :key="index">
+<br>
+<button @click="addDogPhoto">增加一只小狗</button>
+
 </template>
 
 <style scoped>
+
 header {
   line-height: 1.5;
 }
@@ -38,5 +64,9 @@ header {
     place-items: flex-start;
     flex-wrap: wrap;
   }
+}
+
+img{
+  height: 100pt;
 }
 </style>
