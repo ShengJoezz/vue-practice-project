@@ -1,9 +1,15 @@
 <script setup lang="ts">
-import Person from './components/person.vue'
+import bookList from './components/bookitem.vue'
+import { ref }from 'vue'
+const list = ref([
+  {name:'sing',pages:100,author:'joe',id:1},
+  {name:'song',pages:200,author:'bridge',id:2}
+]
+)
 </script>
 
 <template>
-<Person />
+<bookList :booklist="list" />
 </template>
 
 <style scoped>

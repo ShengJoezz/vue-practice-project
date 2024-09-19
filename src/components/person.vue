@@ -1,22 +1,27 @@
 <template>
-<h1>姓氏:{{FirstName}}</h1>
-<br>
-<h1>名字:{{LastName}}</h1>
-<br>
-<h1>全名:{{FullName}}</h1>
-<button @click="changeFullName">改变名字</button>
+    <div>
+        学生姓名:{{person.name}}
+        <br>
+        学生年龄:{{ person.age }}
+        <hr>
+        学生学号:{{ person.id }}
+        <button @click="changeName">anxia</button>
+        <input type="text" :text=id>
+</div>
 </template>
 
-<script setup>
-import {ref,computed} from 'vue'
-const FirstName = ref('Zhang');
-const LastName = ref('San');
-let FullName = computed( ( )=>{
-    return FirstName.value + LastName.value
+<script lang="ts" setup>
+import {ref} from 'vue'
+import  { type personInter } from '@/type';
+let person:personInter = ref<personInter>({
+   name :'joe',
+   age : 23 ,
+   id : 'M202471934'
 })
-function changeFullName(){
-  FirstName.value = 'joe'
+function changeName(){
+
 }
+const id = ref(2)
 </script>
 
 <style scoped>
