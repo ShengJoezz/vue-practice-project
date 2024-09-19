@@ -1,29 +1,13 @@
 <script setup lang="ts">
-import {reactive, ref} from 'vue'
-import axios from 'axios'
+import useSum from './hooks/useSum';
+import useDogs from './hooks/useDogs';
 //数据
-let sum = ref(0)
-let dogPhotoUrl = axios.get('https://dog.ceo/api/breed/pembroke/images/random')
-let dogPhotoList = reactive(
-  ['https://images.dog.ceo/breeds/pembroke/n02113023_4972.jpg']
-)
+let {dogPhotoList,addDogPhoto}=useDogs()
+let {sum,Add} = useSum()
+
 //方法
-function Add(){
-  sum.value += 1
-}
-async function getPhotoUrl(){
-  try{
-  let result = await axios.get('https://dog.ceo/api/breed/pembroke/images/random');
-  return result.data}
-  catch(error){
-    alert(error)
-  }
-}
-async function addDogPhoto(){
-  let newPhotoJson = await getPhotoUrl();
-  let newPhotoUrl = newPhotoJson.message
-  dogPhotoList.push(newPhotoUrl)
-}
+
+
 </script>
 
 <template>
