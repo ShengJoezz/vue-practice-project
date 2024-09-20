@@ -1,56 +1,58 @@
-<script setup lang="ts">
-import useSum from './hooks/useSum';
-import useDogs from './hooks/useDogs';
-//数据
-let {dogPhotoList,addDogPhoto}=useDogs()
-let {sum,Add} = useSum()
-
-//方法
-
-
-</script>
-
 <template>
-<h1>现在的数字大小:{{ sum }}</h1>
-<br>
-<button @click="Add">点我加一</button>
-<hr>
-<img v-for="(dog,index) in dogPhotoList" :src="dog" :key="index">
-<br>
-<button @click="addDogPhoto">增加一只小狗</button>
-
+  <h1>joe的第一个vue-router项目</h1>
+  <nav>
+    <RouterLink to="/Home">主页</RouterLink>
+    <RouterLink to="/News">新闻</RouterLink>
+    <RouterLink to="/About">关于</RouterLink>
+  </nav>
+  <div class="box">
+    <RouterView></RouterView>
+  </div>
 </template>
 
+<script setup lang="ts">
+import { RouterView,RouterLink } from 'vue-router';
+
+// 这里可以添加您的逻辑
+</script>
+
 <style scoped>
-
-header {
-  line-height: 1.5;
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-img{
-  height: 100pt;
+a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.box {
+  background-color: #e0f7fa; /* 浅蓝色背景 */
+  border: 1px solid #b2ebf2; /* 边框颜色 */
+  border-radius: 10px; /* 圆角 */
+  padding: 20px; /* 内边距 */
+  text-align: center; /* 文字居中 */
+  margin: 20px auto; /* 上下外边距，左右居中 */
+  width: 80%; /* 宽度 */
+  max-width: 600px; /* 最大宽度 */
 }
 </style>
