@@ -1,10 +1,12 @@
 <template>
   <h1>joe的第一个vue-router项目</h1>
+ 
   <nav>
     <RouterLink to="/Home">主页</RouterLink>
     <RouterLink to="/News">新闻</RouterLink>
     <RouterLink to="/About">关于</RouterLink>
   </nav>
+
   <div class="box">
     <RouterView></RouterView>
   </div>
