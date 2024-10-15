@@ -6,20 +6,22 @@ import NewsDetail from "@/pages/NewsDetail.vue";
 
 const routes = [
     {
-        path : '/Home',
-        component : Home
-    },
-    {
-        path : '/About',
-        component : About
-    },
-    {
-        path : '/News',
-        component : News,
-        children : [
-            {
-                path : 'NewsDetail',
-                component : NewsDetail
+        history:createWebHistory(),
+        routes:[
+            {path:'/Home',
+            component:Home
+            },
+            {path:'/News',
+            component:News,
+            children:[
+                {
+                path:"detail",
+                 component:NewsDetail,   
+                }
+            ]
+            },
+            {path:'/About',
+            component:About
             }
         ]
     }
